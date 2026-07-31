@@ -9,7 +9,7 @@
   };
 
   outputs = { nixpkgs, nixos-hardware, ... }: {
-    nixosConfigurations.homelab = nixpkgs.lib.system {
+    nixosConfigurations.nixos = nixpkgs.lib.system {
       system = "aarch64-linux";
 
       modules = [

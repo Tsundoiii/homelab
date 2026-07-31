@@ -3,6 +3,8 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  networking.hostName = "homelab";
+
   services.openssh.enable = true;
 
   programs.vim.enable = true;
