@@ -14,6 +14,7 @@
 
       modules = [
         nixos-hardware.nixosModules.raspberry-pi-5
+        ./hardware.nix
         ./configuration.nix
       ];
     };
