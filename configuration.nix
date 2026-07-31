@@ -1,5 +1,5 @@
 {
-  state.stateVersion = "26.11";
+  system.stateVersion = "26.11";
 
   hardware.enableRedistributableFirmware = true;
 
