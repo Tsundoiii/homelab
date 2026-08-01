@@ -1,22 +1,38 @@
 {
+  nixConfig = {
+    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
+
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "nixpkgs";
-
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = { nixpkgs, nixos-hardware, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
+  outputs =
+    {
+      nixpkgs,
+      nixos-raspberrypi,
+      vscode-server,
+      ...
+    }:
+    {
+      nixosConfigurations.nixos = nixos-raspberrypi.lib.nixosSystem {
+        system = "aarch64-linux";
 
-      modules = [
-        nixos-hardware.nixosModules.raspberry-pi-5
-        ./hardware.nix
-        ./configuration.nix
-      ];
+        modules = [
+          {
+            imports = [ nixos-raspberrypi.nixosModules.raspberry-pi-5.base ];
+          }
+
+          vscode-server.nixosModules.default
+          ./hardware.nix
+          ./configuration.nix
+        ];
+      };
     };
-  };
 }
