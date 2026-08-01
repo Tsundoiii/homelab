@@ -6,7 +6,10 @@
 
   system.stateVersion = "26.11";
 
-  networking.hostName = "homelab";
+  networking = {
+    hostName = "homelab";
+    networkmanager.enable = true;
+  };
 
   nix.settings.experimental-features = [
     "nix-command"
