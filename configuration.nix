@@ -3,6 +3,11 @@
 
   networking.hostName = "homelab";
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   services.openssh.enable = true;
 
   programs.vim.enable = true;
