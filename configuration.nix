@@ -1,4 +1,9 @@
 {
+  imports = [
+    ./programs
+    ./hardware.nix
+  ];
+
   system.stateVersion = "26.11";
 
   networking.hostName = "homelab";
@@ -9,15 +14,6 @@
   ];
 
   services.openssh.enable = true;
-
-  programs = {
-    git.enable = true;
-
-    vim = {
-      enable = true;
-      defaultEditor = true;
-    };
-  };
 
   users = {
     mutableUsers = false;

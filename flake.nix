@@ -22,15 +22,12 @@
     }:
     {
       nixosConfigurations.nixos = nixos-raspberrypi.lib.nixosSystem {
-        system = "aarch64-linux";
-
         modules = [
           {
             imports = [ nixos-raspberrypi.nixosModules.raspberry-pi-5.base ];
           }
 
           vscode-server.nixosModules.default
-          ./hardware.nix
           ./configuration.nix
         ];
       };
