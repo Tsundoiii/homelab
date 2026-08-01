@@ -10,7 +10,14 @@
 
   services.openssh.enable = true;
 
-  programs.vim.enable = true;
+  programs = {
+    git.enable = true;
+
+    vim = {
+      enable = true;
+      defaultEditor = true;
+    };
+  };
 
   users = {
     mutableUsers = false;
